@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_socketio import join_room, leave_room, send, SocketIO
-import random
 from string import ascii_uppercase
+import secrets
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'asdfsdafas'
@@ -13,7 +13,7 @@ def generate_unique_code(length):
     while True:
         code = ""
         for _ in range(length):
-            code += random.choice(ascii_uppercase)
+            code += secrets.choice(ascii_uppercase)
             
         if code not in rooms:
             break
